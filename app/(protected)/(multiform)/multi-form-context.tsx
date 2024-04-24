@@ -18,8 +18,9 @@ interface UserInformation {
     address: string,
     city: string,
     dob: string,
-    image:string,
+    image: File,
     state: string,
+    hasCrime: string,
     crimeDescription: string,
     zipcode:string
 }

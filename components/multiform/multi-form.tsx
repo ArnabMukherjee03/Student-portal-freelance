@@ -5,8 +5,8 @@ import UserInformation from "./user-info";
 import RequiredInformation from "./required-info";
 
 export const MultiForm = () => {
-  const { step } = useUserFormContext();
-  // const step = 2;
+  // const { step } = useUserFormContext();
+  const step = 2;
 
   return <>
   {step === 1 && <UserInformation />}

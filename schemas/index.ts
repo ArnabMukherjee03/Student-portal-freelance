@@ -59,18 +59,14 @@ export const requiredInfoSchema = z.object({
   state: z.string().min(1, {
     message: "State is required",
   }),
-//   dob: z.string().min(1, {
-//     message: "DOB is required",
-//   }),
-//   image: z
-//     .any()
-//     .refine((file) => file?.size <= MAX_FILE_SIZE, `Max image size is 5MB.`)
-//     .refine(
-//       (file) => ACCEPTED_IMAGE_TYPES.includes(file?.type),
-//       "Only .jpg, .jpeg, .png  formats are supported."
-//     ),  
-//   crimeDescription: z.string().min(1,{
-//     message: "crime description is required",
-//   }),
-  zipcode: z.string()
-});
+  dob: z.string().min(1, {
+    message: "DOB is required",
+  }),
+  image: z.any() 
+    ,
+    hasCrime: z.string(),
+    crimeDescription: z.string().optional(),
+    zipcode: z.string()
+}).refine(schema => {
+  return !(schema.hasCrime === "yes" && schema.crimeDescription===undefined)
+},"Ok");

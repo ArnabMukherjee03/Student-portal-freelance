@@ -28,26 +28,31 @@ const RequiredInformation = () => {
     defaultValues: {
       address:"",
       city: "",
-      // dob:"",
-      // image:"",
+      dob:"",
+      image: null,
       state: "",
+      hasCrime: "",
       crimeDescription: "",
       zipcode:""
     },
   });
 
   const [imagePreview, setImagePreview] = useState(null);
-
+  const [selectedFile, setSelectedFile] = useState(null);
   // console.log(imagePreview);
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
+    console.log("imageFile",file);
+    
     if (file) {
       const reader = new FileReader();
-      reader.onload = () => {
+      reader.onload = () => {  
+        setSelectedFile(file);
         setImagePreview(reader.result);
       };
       reader.readAsDataURL(file);
+      // form.setValue("image", file);
     }
   };
 
@@ -55,8 +60,10 @@ const RequiredInformation = () => {
   
 
   const onSubmit = (values: z.infer<typeof requiredInfoSchema>) => {
-    updateUserData(values);
+    if (selectedFile) {
+    updateUserData({...values,image:selectedFile}  );
     changeStep(step + 1);
+    }
   };
 
   return (
@@ -70,7 +77,7 @@ const RequiredInformation = () => {
             {/* image and the address section */}
             <div className="flex gap-8">
               {/* Image */}
-              {/* <div className="w-[40%] h-[180px]">
+               <div className="w-[40%] h-[180px]">
                 {imagePreview ? (
                   <Image
                     src={imagePreview}
@@ -116,7 +123,7 @@ const RequiredInformation = () => {
                     </FormItem>
                   )}
                 />
-              </div> */}
+              </div> 
               {/* Address Section */}
               <div className="space-y-2">
                 <FormField
@@ -197,7 +204,7 @@ const RequiredInformation = () => {
               </div>
             </div>
             {/* image and the address section ends here*/}
-            {/* <FormField
+            <FormField
               control={form.control}
               name="hasCrime"
               render={({ field }) => (
@@ -228,7 +235,7 @@ const RequiredInformation = () => {
                   <FormMessage />
                 </FormItem>
               )}
-            /> */}
+            /> 
             <FormField
               control={form.control}
               name="crimeDescription"
