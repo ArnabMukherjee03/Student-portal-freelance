@@ -1,3 +1,4 @@
+"use client"
 import {
   Form,
   FormControl,
@@ -8,7 +9,6 @@ import {
 } from "../ui/form";
 import { Input } from "../ui/input";
 import { useForm } from "react-hook-form";
-import { userInformationSchema } from "@/schemas";
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Footer from "@/components/multiform/Footer";
@@ -18,23 +18,27 @@ import { useState } from "react";
 import Image from "next/image";
 import { Textarea } from "../ui/textarea";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { requiredInfoSchema } from "@/schemas";
 
 const RequiredInformation = () => {
   const { step, changeStep, updateUserData } = useUserFormContext();
-  const form = useForm<z.infer<typeof userInformationSchema>>({
-    resolver: zodResolver(userInformationSchema),
+  const form = useForm<z.infer<typeof requiredInfoSchema>>({
+    resolver: zodResolver(requiredInfoSchema),
     mode: "onChange",
     defaultValues: {
-      name: "",
-      email: "",
-      phone: "",
-      secondaryphone: "",
+      address:"",
+      city: "",
+      // dob:"",
+      // image:"",
+      state: "",
+      crimeDescription: "",
+      zipcode:""
     },
   });
 
   const [imagePreview, setImagePreview] = useState(null);
 
-  console.log(imagePreview);
+  // console.log(imagePreview);
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
@@ -47,10 +51,14 @@ const RequiredInformation = () => {
     }
   };
 
-  const onSubmit = (values: z.infer<typeof userInformationSchema>) => {
+  console.log(step);
+  
+
+  const onSubmit = (values: z.infer<typeof requiredInfoSchema>) => {
     updateUserData(values);
     changeStep(step + 1);
   };
+
   return (
     <MultiFormWrapper
       headerLabel="Required info"
@@ -62,7 +70,7 @@ const RequiredInformation = () => {
             {/* image and the address section */}
             <div className="flex gap-8">
               {/* Image */}
-              <div className="w-[40%] h-[180px]">
+              {/* <div className="w-[40%] h-[180px]">
                 {imagePreview ? (
                   <Image
                     src={imagePreview}
@@ -75,7 +83,7 @@ const RequiredInformation = () => {
                 ) : (
                   <FormField
                     control={form.control}
-                    name="name"
+                    name="image"
                     render={({ field }) => (
                       <FormItem>
                         <FormLabel className="w-full h-[180px] flex items-center justify-center border text-xs text-center cursor-pointer">
@@ -97,7 +105,7 @@ const RequiredInformation = () => {
                 )}
                 <FormField
                   control={form.control}
-                  name="State"
+                  name="dob"
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>Date of Birth</FormLabel>
@@ -108,12 +116,12 @@ const RequiredInformation = () => {
                     </FormItem>
                   )}
                 />
-              </div>
+              </div> */}
               {/* Address Section */}
               <div className="space-y-2">
                 <FormField
                   control={form.control}
-                  name="email"
+                  name="address"
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>Current Address</FormLabel>
@@ -150,7 +158,7 @@ const RequiredInformation = () => {
                   />
                   <FormField
                     control={form.control}
-                    name="State"
+                    name="state"
                     render={({ field }) => (
                       <FormItem>
                         <FormLabel>State</FormLabel>
@@ -169,7 +177,7 @@ const RequiredInformation = () => {
                 </div>
                 <FormField
                   control={form.control}
-                  name="State"
+                  name="zipcode"
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>Zip Code</FormLabel>
@@ -189,9 +197,9 @@ const RequiredInformation = () => {
               </div>
             </div>
             {/* image and the address section ends here*/}
-            <FormField
+            {/* <FormField
               control={form.control}
-              name="type"
+              name="hasCrime"
               render={({ field }) => (
                 <FormItem className="space-y-3">
                   <FormLabel>
@@ -220,10 +228,10 @@ const RequiredInformation = () => {
                   <FormMessage />
                 </FormItem>
               )}
-            />
+            /> */}
             <FormField
               control={form.control}
-              name="email"
+              name="crimeDescription"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>If Yes, then explain</FormLabel>

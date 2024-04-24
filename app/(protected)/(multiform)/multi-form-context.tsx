@@ -1,4 +1,5 @@
 'use client';
+import { LucideBarChartHorizontalBig } from "lucide-react";
 import React, { createContext, useState } from "react";
 
 interface Address {
@@ -14,9 +15,13 @@ interface UserInformation {
     email: string;
     phone: string;
     secondaryphone: string;
-    address: Address;
-    hasCrime: boolean;
-    crimeDescription: string;
+    address: string,
+    city: string,
+    dob: string,
+    image:string,
+    state: string,
+    crimeDescription: string,
+    zipcode:string
 }
 
 interface UserContextProps {
@@ -41,6 +46,7 @@ export const UserFormContextProvider = ({ children }: { children: React.ReactNod
  
 
   const updateUserData = (values: Partial<UserInformation>) => {
+     console.log("CONTEXT",values)
       setUser(prevUser => {
           return { ...prevUser!, ...values };
       });
