@@ -1,20 +1,14 @@
 import { auth, signOut } from "@/auth";
+import { Dashboard } from "@/components/dashboard/dashboard";
+import {redirect} from "next/navigation"
 
 const SettingsPage = async ()=>{
     const session = await auth();
-    return(
-        <div className="">
-            {
-                JSON.stringify(session)
-            }
-            <form action={async()=>{
-                "use server";
-                await signOut();
-            }}>
-                <button type="submit">signout</button>
-            </form>
-        </div>
-    )
+
+    // if(!session?.user?.isFormFilled){
+    //     redirect("/form")
+    // }
+    return <Dashboard/>
 }
 
 export default SettingsPage;

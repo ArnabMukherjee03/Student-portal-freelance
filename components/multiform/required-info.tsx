@@ -33,7 +33,8 @@ const RequiredInformation = () => {
       state: "",
       hasCrime: "",
       crimeDescription: "",
-      zipcode:""
+      zipcode:"",
+      country: ""
     },
   });
 
@@ -46,13 +47,12 @@ const RequiredInformation = () => {
     console.log("imageFile",file);
     
     if (file) {
-      const reader = new FileReader();
+      const reader = new FileReader() 
       reader.onload = () => {  
         setSelectedFile(file);
         setImagePreview(reader.result);
       };
       reader.readAsDataURL(file);
-      // form.setValue("image", file);
     }
   };
 
@@ -75,9 +75,9 @@ const RequiredInformation = () => {
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 ">
           <div className="space-y-4 ">
             {/* image and the address section */}
-            <div className="flex gap-8">
+            <div className=" lg:flex lg:gap-8">
               {/* Image */}
-               <div className="w-[40%] h-[180px]">
+               <div className="lg:w-[40%] lg:h-[180px]">
                 {imagePreview ? (
                   <Image
                     src={imagePreview}
@@ -182,6 +182,25 @@ const RequiredInformation = () => {
                     )}
                   />
                 </div>
+                <div className="flex gap-4">
+                <FormField
+                  control={form.control}
+                  name="country"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Country</FormLabel>
+                      <FormControl>
+                        <Input
+                          {...field}
+                          placeholder="United States of America"
+                          type="text"
+                          autoComplete="off"
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
                 <FormField
                   control={form.control}
                   name="zipcode"
@@ -200,6 +219,7 @@ const RequiredInformation = () => {
                     </FormItem>
                   )}
                 />
+                </div>
                 {/* City && STATE:: END */}
               </div>
             </div>

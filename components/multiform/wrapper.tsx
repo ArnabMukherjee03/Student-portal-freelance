@@ -2,9 +2,8 @@
 
 import { cn } from "@/lib/utils";
 import { lusitana } from "../fonts";
-import { Card, CardContent, CardFooter, CardHeader } from "../ui/card";
-import { Button } from "../ui/button";
-import Footer from "@/components/multiform/Footer";
+import { Card, CardContent, CardHeader } from "../ui/card";
+
 
 interface MultiFormWrapperProps {
   children: React.ReactNode;

@@ -18,7 +18,7 @@ export const SidebarItem = ({
 }: Props)=>{
     const pathname = usePathname();
     const active = pathname===href;
-    console.log(iconSrc);
+  
     
     return (
         <Button

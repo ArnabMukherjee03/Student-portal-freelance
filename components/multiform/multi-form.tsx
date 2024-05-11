@@ -1,15 +1,15 @@
 "use client";
-
 import { useUserFormContext } from "@/hooks/useUserFormContext";
 import UserInformation from "./user-info";
 import RequiredInformation from "./required-info";
+import EmploymentHistory from "./employment-history";
 
-export const MultiForm = () => {
-  // const { step } = useUserFormContext();
-  const step = 2;
+export const MultiForm = ({data}:{data:{name: string, email:string}}) => {
+  const { step } = useUserFormContext();
 
   return <>
-  {step === 1 && <UserInformation />}
-  {step ===2 && <RequiredInformation/>}
+  {step === 1 && <UserInformation data={data} />}
+  {step === 2 && <RequiredInformation/>}
+  {step === 3 && <EmploymentHistory/>}
   </>;
 };

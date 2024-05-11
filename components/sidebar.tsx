@@ -1,13 +1,14 @@
 import { cn } from "@/lib/utils";
-import { lusitana } from "@/components/fonts";
 import Link from "next/link";
 import { SidebarItem } from "./sidebar-item";
 import Image from "next/image";
+import { signOut } from "@/auth";
 
 type Props = {
   className?: string;
 };
 export const Sidebar = ({ className }: Props) => {
+
   return (
     <div
       className={cn(
@@ -37,6 +38,10 @@ export const Sidebar = ({ className }: Props) => {
           iconSrc="/home-svgrepo-com.svg"
         />
         <div className="hidden h-auto w-full grow rounded-md bg-gray-50 md:block"></div>
+        <form action={async()=>{
+                "use server";
+                await signOut();
+            }}>
         <button className="flex h-[48px] w-full grow items-center justify-center gap-2 rounded-md bg-gray-50 p-3 text-sm font-medium hover:bg-sky-100 hover:text-blue-600 md:flex-none md:justify-start md:p-2 md:px-3">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -55,6 +60,7 @@ export const Sidebar = ({ className }: Props) => {
           </svg>
           <div className="hidden md:block">Sign Out</div>
         </button>
+        </form>
       </div>
     </div>
   );

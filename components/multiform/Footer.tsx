@@ -8,10 +8,14 @@ import { useUserFormContext } from "@/hooks/useUserFormContext";
 
 type TFooter = {
   className?: string;
+  onHandleNextStep?: () => void;
+  onHandlePreviousStep?: () => void;
 };
 
 export default function Footer({
   className,
+  onHandleNextStep,
+ onHandlePreviousStep,
 }: TFooter) {
   const {step} = useUserFormContext();
   
@@ -28,6 +32,7 @@ export default function Footer({
         <Button
           variant="ghost"
           className="text-[#9699ab] hover:text-blue-700"
+          onClick={onHandlePreviousStep}
         >
           Go Back
         </Button>
@@ -36,9 +41,10 @@ export default function Footer({
         className={cn(
           "bg-blue-700 text-[#FFFFFF] hover:bg-[#164988]",
         )}
+        onClick={onHandleNextStep}
         type="submit"
       >
-        {step === 4 ? "Confirm" : "Next"}
+        {step === 3 ? "Confirm" : "Next"}
       </Button>
     </footer>
   );

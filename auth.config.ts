@@ -2,6 +2,7 @@ import type { NextAuthConfig, DefaultSession } from "next-auth";
 import { protectedRoutes } from "./routes";
 import { getUserById } from "./helpers/user";
 
+
 export const authConfig = {
   pages: {
     signIn: "/auth/login",

@@ -1,16 +1,22 @@
-"use client"
-import { useSession } from "next-auth/react"
+
+import { checkFormFilled } from "@/actions/multi-form";
 import { MobileHeader } from "@/components/mobile-header";
 import { Sidebar } from "@/components/sidebar";
-// import { getUserById } from "@/helpers/user";
-import { useRouter } from 'next/navigation'
-import { useEffect } from "react";
+
+import {redirect} from "next/navigation"
+
 
 type Props = {
   children: React.ReactNode;
 };
 
-const ProtectedLayout = ({ children }: Props) => {
+const ProtectedLayout = async({ children }: Props) => {
+
+  const isFormFilled = await checkFormFilled();
+
+  if(!isFormFilled){
+    redirect("/form")
+  }
   
   return (
     <>

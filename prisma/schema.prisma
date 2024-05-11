@@ -8,14 +8,38 @@ datasource db {
 }
 
 model User {
-  id            String    @id @default(cuid())
+  id            Int    @id @default(autoincrement())
   name          String?
   email         String?   @unique
   emailVerified DateTime? @map("email_verified")
-  image         String?
   password      String?
   isFormFilled   Boolean @default(false)
+  userInfo       UserInformation?
   @@map("users")
+}
+
+enum gender{
+   male
+  female
+  other
+}
+
+model UserInformation {
+  id String @id @default(cuid())
+  image String?
+  phone String?
+  secondaryphone String
+  gender gender
+  country String
+  address String?
+  city String?
+  dob String?
+  state String?
+  hasCrime String?
+  crimeDescription String
+  zipcode String?
+  user    User?  @relation(fields: [userId], references: [id]) // Define a one-to-one relation
+  userId  Int? @unique
 }
 
 model VerificationToken{
