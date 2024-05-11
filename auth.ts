@@ -13,7 +13,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
   ...authConfig,
   providers: [
     Credentials({
-      async authorize(credentials) {
+      async authorize(credentials): Promise<any> {
         const ValidatedFields = LoginSchema.safeParse(credentials);
 
         if (ValidatedFields.success) {

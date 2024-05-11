@@ -42,7 +42,7 @@ const RequiredInformation = () => {
   const [selectedFile, setSelectedFile] = useState(null);
   // console.log(imagePreview);
 
-  const handleImageChange = (e) => {
+  const handleImageChange = (e : any) => {
     const file = e.target.files[0];
     console.log("imageFile",file);
     
@@ -50,7 +50,7 @@ const RequiredInformation = () => {
       const reader = new FileReader() 
       reader.onload = () => {  
         setSelectedFile(file);
-        setImagePreview(reader.result);
+        setImagePreview(reader.result as any);
       };
       reader.readAsDataURL(file);
     }
