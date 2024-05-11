@@ -34,7 +34,7 @@ export const authConfig = {
       }
 
       if (session.user) {
-        session.user.isFormFilled = token.isFormFilled;
+        session.user.isFormFilled = token.isFormFilled as boolean;
       }
 
       return session;

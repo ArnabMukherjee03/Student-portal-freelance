@@ -1,12 +1,13 @@
 "use server";
 
 import {v2 as cloudinary} from 'cloudinary';
-import { resolve } from 'path';
+
+console.log(process.env.CLOUDINARY_API_SECRET)
           
 cloudinary.config({ 
   cloud_name: 'dafq1bcqu', 
-  api_key: '817827735835893', 
-  api_secret: '72OG2e8arwSWz0OXk8JSFB4IsI0' ,
+  api_key: process.env.CLOUDINARY_API_KEY, 
+  api_secret: process.env.CLOUDINARY_API_SECRET,
   secure: true
 });
 
