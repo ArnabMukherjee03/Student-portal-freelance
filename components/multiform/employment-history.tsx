@@ -55,10 +55,10 @@ const EmploymentHistory = () => {
         const arrayBuffer = await file.arrayBuffer();
         const buffer = new Uint8Array(arrayBuffer);
 
-        const result = await uploadImage(buffer).catch(err=>console.log("Error::",err))
+        const result = await uploadImage(buffer).catch(err=>console.log("Error::",err)) as any
 
         if(result){
-          delete user.image;
+          delete user?.image
           await multiFormSubmit({...user,image:result.secure_url});
         }
 

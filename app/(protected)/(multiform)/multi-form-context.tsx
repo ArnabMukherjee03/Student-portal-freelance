@@ -10,7 +10,7 @@ interface UserInformation {
   address: string;
   city: string;
   dob: string;
-  image: File;
+  image?: File;
   state: string;
   hasCrime: string;
   crimeDescription: string;

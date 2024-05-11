@@ -20,7 +20,7 @@ export const EmployeeProfile = async() => {
   return (
     <aside className="w-full lg:w-[30%] bg-white shadow-md rounded-md flex flex-col items-center py-10 px-4 gap-4">
       <Avatar className="w-[80px] h-[80px]">
-        <AvatarImage src={details?.userInfo?.image} />
+        <AvatarImage src={details?.userInfo?.image || undefined} />
         <AvatarFallback>{convertToInitials(details?.name || "")}</AvatarFallback>
       </Avatar>
       <h3 className={cn(lusitana.className)}>{details?.name}</h3>
