@@ -80,3 +80,14 @@
       @apply bg-background text-foreground;
     }
   }
+
+  .bg-wrapper-black::after{
+    position: absolute;
+    background: #000;
+    opacity: 1;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    top: 0;
+    z-index: 1;
+  }
