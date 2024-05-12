@@ -21,7 +21,7 @@ const LandingPage = () => {
       </nav>
       {/* Hero Section */}
       <div className='relative'>
-      <div style={{background: "url(/hero.jpeg)", backgroundRepeat: "no-repeat", backgroundSize: "cover"}} className="py-32  px-4" >
+      <div style={{background: "url(/Hero.jpeg)", backgroundRepeat: "no-repeat", backgroundSize: "cover"}} className="py-32  px-4" >
       <div className="after:absolute after:top-0 after:left-0 after:w-full after:h-full after:opacity-30 after:bg-black"></div>
         <div className="max-w-4xl mx-auto text-center text-white relative z-10">
           <h1 className={cn("text-4xl md:text-4xl mb-4",lusitana.className)}>Welcome to MP Cleaning Services</h1>
